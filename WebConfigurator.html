@@ -1,0 +1,1262 @@
+<html>
+	<head>
+		<title>ACME Headset configurator</title>
+		<style>
+		body {
+			font-family: Monospace;
+			background-color:#f0f0f0;
+			margin: 0px;
+			overflow: hidden;
+		}
+		canvas {
+			width: 100%;
+			height: 100%;
+		}
+
+		.dg.a{
+			float: none !important;
+			position: fixed;
+			top:155px;
+			right:24.25%;
+			font:"";
+		}
+
+		.dg{
+			font-size: 16px !important;
+			width: 260px !important;
+		}
+
+		.title{
+			background:#343a40 !important;
+			font-size: 18px !important;	
+		}
+
+		.cr{
+			height: 32px !important;	
+		}
+
+		.display-4{
+			font-size: 4rem !important;
+			font-weight: 700 !important;
+		}
+
+		.lead{
+			font-size: 1.6rem !important;
+		}
+
+		#descrizione{
+			height: 100%;
+			width: 25%;
+			right: 0px;
+			position:absolute;
+			background-color: #f0f0f0;
+		}
+
+		#tutorial{
+			height: 100px;
+			width: 260px;
+			left: 0.7%;
+			bottom: 0.7%;
+			position:absolute;
+			background-color: #f0f0f0;
+		}
+
+
+	</style>
+		<script src="libs/three.js"></script>
+		<script src="libs/stats.min.js"></script>
+		<script src="libs/OBJLoader.js"></script>
+		<script src="libs/Coordinates.js"></script>
+		<script src="libs/OrbitControls.js"></script>
+		<script src="libs/GLTFLoader.js"></script>
+		<script src='libs/dat.gui.min.js'></script>
+		<script src='libs/BufferGeometryUtils.js'></script>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+		</head>
+		<!-- TITLE -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-light">
+			<div class="container-fluid">
+				<div class="container">
+					<h1 class="display-4">A.C.M.E.</h1>
+					<p class="lead">American Companies Manufacture Everything - since 1920</p>
+			  </div>
+		  </div>
+		</nav>
+		<!-- NavBar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">A.C.M.E. Headset Configurator</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			  <div class="navbar-nav">
+				<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+				<a class="nav-item nav-link" href="#">Products</a>
+				<a class="nav-item nav-link" href="#">What's new</a>
+				<a class="nav-item nav-link" href="#">Business</a>
+				<a class="nav-item nav-link" href="#">Service</a>
+				<a class="nav-item nav-link" href="#">About us</a>		
+			  </div>
+			</div>
+		
+			  <form class="form-inline my-2 my-lg-0">
+				<div class="input-group">
+				  <div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">Search:</span>
+				  </div>
+				  <input type="text" class="form-control" placeholder="Product name" aria-label="Username" aria-describedby="basic-addon1">
+				</div>
+			  </form>
+		  
+			  <div class="navbar-nav">
+				<a class="nav-item nav-link" href="#">LOGIN</a>		
+			  </div>
+		  </nav>
+	  
+		  <!-- Product description-->
+		  <div class="container" id="descrizione">
+			<p><strong><u><h1>Beep Beep Headset</h1></u></strong></p>
+			<p class="text-justify p-2 mb-2 bg-dark text-white shadow-lg rounded">
+				A natural and detailed sound, an effective noise attenuation and the ability to 
+				handle high volume levels should be in the DNA of every headphones made, as well 
+				as a robust construction and excellent wearing comfort.
+
+				The beep beep headphones are our latest model which are the result of our A.C.M.E. engineers's skills.
+			</p>
+
+			<p><h4>Specifications</h4></p>
+			<ul class="list-unstyled  p-2 mb-2 bg-dark text-white shadow-lg rounded">
+				<li><strong>Physical specifications</strong></li>
+				<ul>
+					<li> Length: 138mm</li>
+					<li> Width: 94mm</li>
+					<li> Height: 195mm</li>
+				</ul>
+
+				<li><strong>Sound features</strong></li>
+				<ul> 
+					<li> Noise attenuation</li>
+					<li> Stereo mode for the best music quality</li>
+					<li> Virtual surround 7.1 for the best gaming experience</li>
+				</ul>
+
+				<li><strong>Technical specifications</strong></li>
+				<ul> 
+					<li> Driver: A.C.M.E. Pro super boost 50mm</li>
+					<li> Frequency response: 20Hz-20KHz</li>
+					<li> Impedance: 35ohm</li>
+				</ul>
+
+				<li><strong>Connectivity</strong></li>
+				<ul> 
+					<li> Battery life: 15min (not rechargeable)</li>
+					<li> Wireless range: 2 meters</li>
+				</ul>
+			</ul>
+			
+
+
+			<p><h4>Configure the headphones of your dreams</h4></p>
+			<p class="text-justify p-2 mb-2 bg-dark text-white shadow-lg rounded">
+				Our advanced production lines allow us to produce highly customized versions at low price,
+				without any additional cost for the customer. Configure the headphones of your dreams with
+				our new web configurator and proceed with the purchase at the modest price of 99.999$.
+			</p>
+
+			<button type="button" class="btn btn-success btn-lg btn-block">Purchase</button>
+
+		  </div>
+
+			<p class="text p-1 mb-1 bg-dark text-white shadow-lg rounded"id="Tutorial">
+				<strong>Controls:</strong><br>
+				- mouse-scroll: zoom in/out<br>
+				- hold the left mouse button and move the cursor to rotate the view
+	
+			</p>
+	
+			<script type="text/x-glsl" id="GlossyVertex">
+				precision highp float;
+				precision highp int;
+				attribute vec4 tangent;
+				varying vec3 vNormal;
+				varying vec3 vTangent;
+				varying vec3 vBitangent;
+				varying vec3 vPosition;
+				varying vec2 vUv;
+		
+				void main() {
+					vec4 vPos = modelViewMatrix * vec4( position, 1.0 );
+					vPosition = vPos.xyz;
+					vNormal = normalize(normalMatrix * normal);
+					vec3 objectTangent = vec3( tangent.xyz );
+					vec3 transformedTangent = normalMatrix * objectTangent;
+					vTangent = normalize( transformedTangent );
+					vBitangent = normalize( cross( vNormal, vTangent ) * tangent.w );
+					vUv = uv;
+					gl_Position = projectionMatrix * vPos;
+				}
+			</script>
+		
+			<script type="text/x-glsl" id="GlossyFragment">
+				precision highp float;
+				precision highp int;
+				varying vec3 vNormal;
+				varying vec3 vTangent;
+				varying vec3 vBitangent;
+				varying vec3 vPosition;
+				varying vec2 vUv;
+				uniform vec3 cspec;
+				uniform sampler2D normalMap;
+				uniform samplerCube envMap;
+				uniform vec2 normalScale;
+				uniform float roughness;
+	
+				const float PI = 3.14159;
+				#define saturate(a) clamp( a, 0.0, 1.0 )
+	
+				float pow2( const in float x ) { return x*x; }
+	
+				float getSpecularMIPLevel( const in float blinnShininessExponent, const in int maxMIPLevel ) {
+					 float maxMIPLevelScalar = float( maxMIPLevel );
+					 float desiredMIPLevel = maxMIPLevelScalar - 0.79248 - 0.5 * log2( pow2( blinnShininessExponent ) + 1.0 );
+					 return clamp( desiredMIPLevel, 0.0, maxMIPLevelScalar );
+				 }
+	
+				float GGXRoughnessToBlinnExponent( const in float ggxRoughness ) {
+					  return ( 2.0 / pow2( ggxRoughness + 0.0001 ) - 2.0 );
+				  }
+	
+				// http://en.wikibooks.org/wiki/GLSL_Programming/Applying_Matrix_Transformations
+				vec3 inverseTransformDirection( in vec3 dir, in mat4 matrix ) {
+					return normalize( ( vec4( dir, 0.0 ) * matrix ).xyz );
+				}
+	
+				vec3 BRDF_Specular_GGX_Environment( vec3 normal, vec3 viewDir, const in vec3 cspec, const in float roughness ) {
+	
+					float dotNV = saturate( dot( normal, viewDir ) );
+					const vec4 c0 = vec4( - 1, - 0.0275, - 0.572, 0.022 );
+					const vec4 c1 = vec4( 1, 0.0425, 1.04, - 0.04 );
+					vec4 r = roughness * c0 + c1;
+					float a004 = min( r.x * r.x, exp2( - 9.28 * dotNV ) ) * r.x + r.y;
+					vec2 AB = vec2( -1.04, 1.04 ) * a004 + r.zw;
+					return cspec * AB.x + AB.y;
+	
+				}
+	
+				void main() {
+					vec3 normal = normalize( vNormal);
+					vec3 tangent = normalize( vTangent);
+					vec3 bitangent = normalize( vBitangent );
+					mat3 vTBN = mat3( tangent, bitangent, normal);
+					vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0;
+					mapN.xy = normalScale * mapN.xy;
+					vec3 n = normalize( vTBN * mapN );
+					vec3 v = normalize( -vPosition);
+					vec3 vReflect = reflect(vPosition,n);
+					vec3 r = inverseTransformDirection( vReflect, viewMatrix );
+	
+					float blinnShininessExponent = GGXRoughnessToBlinnExponent(roughness);
+					float specularMIPLevel = getSpecularMIPLevel(blinnShininessExponent, 8);
+	
+					 vec3 envLight = textureCubeLodEXT( envMap, vec3(-r.x, r.yz), specularMIPLevel ).rgb;
+					 // texture in sRGB, linearize
+					envLight = pow( envLight, vec3(2.2));
+					vec3 outRadiance = envLight*BRDF_Specular_GGX_Environment(n, v, cspec, roughness);
+					// gamma encode the final value
+					gl_FragColor = vec4(pow( outRadiance, vec3(1.0/2.2)), 1.0);
+					//gl_FragColor = vec4(r,1.0);
+				}
+			</script>
+
+			<script type="text/x-glsl" id="LamebrtianGlossyFragment">
+				precision highp float;
+				precision highp int;
+				varying vec3 vNormal;
+				varying vec3 vTangent;
+				varying vec3 vBitangent;
+				varying vec3 vPosition;
+				varying vec2 vUv;
+				uniform vec3 cspec;
+				uniform sampler2D normalMap;
+				uniform samplerCube envMap;
+				uniform vec2 normalScale;
+				uniform float roughness;
+
+				//Lambertian Stuff
+				uniform vec3 pointLightPosition1; // in world space
+				uniform vec3 clight1;
+				uniform vec3 pointLightPosition2; // in world space
+				uniform vec3 clight2;
+				uniform vec3 pointLightPosition3; // in world space
+				uniform vec3 clight3;
+				uniform vec3 cdiff;
+	
+				const float PI = 3.14159;
+
+				//Schlick microfacet BRDF
+				vec3 FSchlick(float lDoth) {
+					return (cspec + (vec3(1.0)-cspec)*pow(1.0 - lDoth,5.0));
+				}
+			
+				//NDF -> Normal distribution function GGX Approx
+				float DGGX(float nDoth, float alpha) {
+					float alpha2 = alpha*alpha;
+					float d = nDoth*nDoth*(alpha2-1.0)+1.0;
+					return (  alpha2 / (PI*d*d));
+				}
+			
+				//Geometry Factor
+				float G1(float dotProduct, float k) {
+					return (dotProduct / (dotProduct*(1.0-k) + k) );
+				}
+			
+				float GSmith(float nDotv, float nDotl) {
+						float k = roughness*roughness;
+						return G1(nDotl,k)*G1(nDotv,k);
+				}
+
+				#define saturate(a) clamp( a, 0.0, 1.0 )
+	
+				float pow2( const in float x ) { return x*x; }
+	
+				float getSpecularMIPLevel( const in float blinnShininessExponent, const in int maxMIPLevel ) {
+					 float maxMIPLevelScalar = float( maxMIPLevel );
+					 float desiredMIPLevel = maxMIPLevelScalar - 0.79248 - 0.5 * log2( pow2( blinnShininessExponent ) + 1.0 );
+					 return clamp( desiredMIPLevel, 0.0, maxMIPLevelScalar );
+				 }
+	
+				float GGXRoughnessToBlinnExponent( const in float ggxRoughness ) {
+					  return ( 2.0 / pow2( ggxRoughness + 0.0001 ) - 2.0 );
+				  }
+	
+				// http://en.wikibooks.org/wiki/GLSL_Programming/Applying_Matrix_Transformations
+				vec3 inverseTransformDirection( in vec3 dir, in mat4 matrix ) {
+					return normalize( ( vec4( dir, 0.0 ) * matrix ).xyz );
+				}
+	
+				vec3 BRDF_Specular_GGX_Environment( vec3 normal, vec3 viewDir, const in vec3 cspec, const in float roughness ) {
+	
+					float dotNV = saturate( dot( normal, viewDir ) );
+					const vec4 c0 = vec4( - 1, - 0.0275, - 0.572, 0.022 );
+					const vec4 c1 = vec4( 1, 0.0425, 1.04, - 0.04 );
+					vec4 r = roughness * c0 + c1;
+					float a004 = min( r.x * r.x, exp2( - 9.28 * dotNV ) ) * r.x + r.y;
+					vec2 AB = vec2( -1.04, 1.04 ) * a004 + r.zw;
+					return cspec * AB.x + AB.y;
+	
+				}
+	
+				void main() {
+
+					//GLOSSY PHASE
+					vec3 normal = normalize( vNormal);
+					vec3 tangent = normalize( vTangent);
+					vec3 bitangent = normalize( vBitangent );
+					mat3 vTBN = mat3( tangent, bitangent, normal);
+					vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0;
+					mapN.xy = normalScale * mapN.xy;
+					vec3 n = normalize( vTBN * mapN );
+					vec3 v = normalize( -vPosition);
+					vec3 vReflect = reflect(vPosition,n);
+					vec3 r = inverseTransformDirection( vReflect, viewMatrix );
+	
+					float blinnShininessExponent = GGXRoughnessToBlinnExponent(roughness);
+					float specularMIPLevel = getSpecularMIPLevel(blinnShininessExponent, 8);
+	
+					 vec3 envLight = textureCubeLodEXT( envMap, vec3(-r.x, r.yz), specularMIPLevel ).rgb;
+					 // texture in sRGB, linearize
+					envLight = pow( envLight, vec3(2.2));
+					 // vec3 outRadiance = envLight*BRDF_Specular_GGX_Environment(n, v, cspec, roughness);
+					
+					//LAMBERTIAN PHASE
+					
+					vec4 plPos1 = viewMatrix * vec4( pointLightPosition1, 1.0 );
+					vec4 plPos2 = viewMatrix * vec4( pointLightPosition2, 1.0 );
+					vec4 plPos3 = viewMatrix * vec4( pointLightPosition3, 1.0 );
+
+					vec3 l1 = normalize(plPos1.xyz - vPosition.xyz);
+					vec3 l2 = normalize(plPos2.xyz - vPosition.xyz);
+					vec3 l3 = normalize(plPos3.xyz - vPosition.xyz);
+					
+					vec3 n1 = normalize( vNormal );  // interpolation destroys normalization, so we have to normalize
+					vec3 n2 = normalize( vNormal );
+					vec3 n3 = normalize( vNormal );  
+					
+					vec3 v1 = normalize(-vPosition);
+					vec3 v2 = normalize(-vPosition);
+					vec3 v3 = normalize(-vPosition);
+					
+					mat3 h;
+					h[0] = normalize( v1 + l1);
+					h[1] = normalize( v2 + l2);
+					h[2] = normalize( v3 + l3);
+					
+					// small quantity to prevent divisions by 0
+					float nDotl[3];
+					nDotl[0] = max(dot( n1, l1 ),0.000001);
+					nDotl[1] = max(dot( n2, l2 ),0.000001);
+					nDotl[2] = max(dot( n3, l3 ),0.000001);
+					
+					float lDoth[3];
+					lDoth[0] = max(dot( l1, h[0] ),0.000001);
+					lDoth[1] = max(dot( l2, h[1] ),0.000001);
+					lDoth[2] = max(dot( l3, h[2] ),0.000001);
+					
+					float nDoth[3];
+					nDoth[0] = max(dot( n1, h[0] ),0.000001);
+					nDoth[1] = max(dot( n2, h[1] ),0.000001);
+					nDoth[2] = max(dot( n3, h[2] ),0.000001);
+
+					float vDoth[3];
+					vDoth[0] = max(dot( v1, h[0] ),0.000001);
+					vDoth[1] = max(dot( v2, h[1] ),0.000001);
+					vDoth[2] = max(dot( v3, h[2] ),0.000001);
+					
+					float nDotv[3];
+					nDotv[0] = max(dot( n1, v1 ),0.000001);
+					nDotv[1] = max(dot( n2, v2 ),0.000001);
+					nDotv[2] = max(dot( n3, v3 ),0.000001);
+					
+					vec3 fresnel1 = FSchlick(lDoth[0]);
+					vec3 fresnel2 = FSchlick(lDoth[1]);
+					vec3 fresnel3 = FSchlick(lDoth[2]);
+
+					vec3 outRadianceToRemove = envLight*BRDF_Specular_GGX_Environment(n, v, cspec, roughness);
+
+					// 1-all_specular_light * cdiff
+					vec3 BRDF1 = (vec3(1.0)-fresnel1-outRadianceToRemove)*cdiff/PI + fresnel1*GSmith(nDotv[0],nDotl[0])*DGGX(nDoth[0],roughness*roughness)/
+						(4.0*nDotl[0]*nDotv[0]);
+					vec3 BRDF2 = (vec3(1.0)-fresnel2-outRadianceToRemove)*cdiff/PI + fresnel2*GSmith(nDotv[1],nDotl[1])*DGGX(nDoth[1],roughness*roughness)/
+						(4.0*nDotl[1]*nDotv[1]);
+					vec3 BRDF3 = (vec3(1.0)-fresnel3-outRadianceToRemove)*cdiff/PI + fresnel3*GSmith(nDotv[2],nDotl[2])*DGGX(nDoth[2],roughness*roughness)/
+						(4.0*nDotl[2]*nDotv[2]);
+
+					// only cubemap light
+					//vec3 outRadiance = envLight*BRDF_Specular_GGX_Environment(n, v, cspec, roughness);
+					
+					// only lamb+micro light
+					//vec3 outRadiance = (PI* (clight1 * nDotl[0]) * BRDF1) + (PI* (clight2 * nDotl[1]) * BRDF2)+ (PI* (clight3 * nDotl[2]) * BRDF3);
+					
+					vec3 outRadiance = envLight*BRDF_Specular_GGX_Environment(n, v, cspec, roughness) + (PI* (clight1 * nDotl[0]) * BRDF1) + (PI* (clight2 * nDotl[1]) * BRDF2)+ (PI* (clight3 * nDotl[2]) * BRDF3);
+					
+
+					// gamma encode the final value
+					gl_FragColor = vec4(pow((outRadiance), vec3(1.0/2.2)), 1.0);
+
+
+				}
+			</script>
+
+			<script type="text/x-glsl" id="vertexBRDF_Lambertian_Microfacet">
+				varying vec3 vNormal;
+				varying vec3 vPosition;
+			
+				void main() {
+					vec4 vPos = modelViewMatrix * vec4( position, 1.0 );
+					vPosition = vPos.xyz;
+					vNormal = normalMatrix * normal;
+					gl_Position = projectionMatrix * vPos;
+				}
+			</script>
+
+			<script type="text/x-glsl" id="fragmentBRDF_Lambertian_Microfacet">
+					varying vec3 vNormal;
+					varying vec3 vPosition;
+				
+					//uniform mat3 pointLightsPositions;
+					//uniform mat3 clight;
+				
+					uniform vec3 pointLightPosition1; // in world space
+					uniform vec3 clight1;
+					uniform vec3 pointLightPosition2; // in world space
+					uniform vec3 clight2;
+					uniform vec3 pointLightPosition3; // in world space
+					uniform vec3 clight3;
+				
+					uniform vec3 cspec;
+					uniform vec3 cdiff;
+					uniform float roughness;
+					const float PI = 3.14159;
+				
+					//Schlick microfacet BRDF
+					vec3 FSchlick(float lDoth) {
+						return (cspec + (vec3(1.0)-cspec)*pow(1.0 - lDoth,5.0));
+					}
+				
+					//NDF -> Normal distribution function GGX Approx
+					float DGGX(float nDoth, float alpha) {
+						float alpha2 = alpha*alpha;
+						float d = nDoth*nDoth*(alpha2-1.0)+1.0;
+						return (  alpha2 / (PI*d*d));
+					}
+				
+					//Geometry Factor
+					float G1(float dotProduct, float k) {
+						return (dotProduct / (dotProduct*(1.0-k) + k) );
+					}
+				
+					float GSmith(float nDotv, float nDotl) {
+							float k = roughness*roughness;
+							return G1(nDotl,k)*G1(nDotv,k);
+					}
+				
+					void main() {
+					
+						
+						vec4 plPos1 = viewMatrix * vec4( pointLightPosition1, 1.0 );
+						vec4 plPos2 = viewMatrix * vec4( pointLightPosition2, 1.0 );
+						vec4 plPos3 = viewMatrix * vec4( pointLightPosition3, 1.0 );
+
+						vec3 l1 = normalize(plPos1.xyz - vPosition.xyz);
+						vec3 l2 = normalize(plPos2.xyz - vPosition.xyz);
+						vec3 l3 = normalize(plPos3.xyz - vPosition.xyz);
+					
+						vec3 n1 = normalize( vNormal );  // interpolation destroys normalization, so we have to normalize
+						vec3 n2 = normalize( vNormal );
+						vec3 n3 = normalize( vNormal );  
+					
+						vec3 v1 = normalize(-vPosition);
+						vec3 v2 = normalize(-vPosition);
+						vec3 v3 = normalize(-vPosition);
+					
+						mat3 h;
+						h[0] = normalize( v1 + l1);
+						h[1] = normalize( v2 + l2);
+						h[2] = normalize( v3 + l3);
+					
+						// small quantity to prevent divisions by 0
+						float nDotl[3];
+						nDotl[0] = max(dot( n1, l1 ),0.000001);
+						nDotl[1] = max(dot( n2, l2 ),0.000001);
+						nDotl[2] = max(dot( n3, l3 ),0.000001);
+					
+						float lDoth[3];
+						lDoth[0] = max(dot( l1, h[0] ),0.000001);
+						lDoth[1] = max(dot( l2, h[1] ),0.000001);
+						lDoth[2] = max(dot( l3, h[2] ),0.000001);
+					
+						float nDoth[3];
+						nDoth[0] = max(dot( n1, h[0] ),0.000001);
+						nDoth[1] = max(dot( n2, h[1] ),0.000001);
+						nDoth[2] = max(dot( n3, h[2] ),0.000001);
+
+						float vDoth[3];
+						vDoth[0] = max(dot( v1, h[0] ),0.000001);
+						vDoth[1] = max(dot( v2, h[1] ),0.000001);
+						vDoth[2] = max(dot( v3, h[2] ),0.000001);
+					
+						float nDotv[3];
+						nDotv[0] = max(dot( n1, v1 ),0.000001);
+						nDotv[1] = max(dot( n2, v2 ),0.000001);
+						nDotv[2] = max(dot( n3, v3 ),0.000001);
+					
+						vec3 fresnel1 = FSchlick(lDoth[0]);
+						vec3 fresnel2 = FSchlick(lDoth[1]);
+						vec3 fresnel3 = FSchlick(lDoth[2]);
+					
+						vec3 BRDF1 = (vec3(1.0)-fresnel1)*cdiff/PI + fresnel1*GSmith(nDotv[0],nDotl[0])*DGGX(nDoth[0],roughness*roughness)/
+							(4.0*nDotl[0]*nDotv[0]);
+
+						vec3 BRDF2 = (vec3(1.0)-fresnel2)*cdiff/PI + fresnel2*GSmith(nDotv[1],nDotl[1])*DGGX(nDoth[1],roughness*roughness)/
+							(4.0*nDotl[1]*nDotv[1]);
+
+						vec3 BRDF3 = (vec3(1.0)-fresnel3)*cdiff/PI + fresnel3*GSmith(nDotv[2],nDotl[2])*DGGX(nDoth[2],roughness*roughness)/
+							(4.0*nDotl[2]*nDotv[2]);
+					
+						vec3 outRadiance = (PI* (clight1 * nDotl[0]) * BRDF1) + (PI* (clight2 * nDotl[1]) * BRDF2) + (PI* (clight3 * nDotl[2]) * BRDF3);
+
+						// gamma encode the final value
+						gl_FragColor = vec4(pow( outRadiance, vec3(1.0/2.2)), 1.0); //2.2 or 1?
+					}
+			</script>
+
+            <script type="text/x-glsl" id="BasicVertexShader">
+                varying vec3 color;
+				
+				void main() {
+					vec3 newPosition = position;
+					// transforms the vertex from object space to clip space coords		
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+                }
+			</script>
+		
+			<script type="text/x-glsl" id="BasicColorFragmentShader">
+				varying vec3 color;
+				void main() {
+					gl_FragColor = vec4(0.5,0.5,0.5,1.0);
+				}
+            </script>
+	
+			<script>
+				// Main Variables
+				var scene, camera, renderer, camera, stats;
+				var controlsActivated = true;
+				var gui;
+				var cubemaps = new Array(4);
+				var sample = new Array(10);
+				var test = false; // if true hide model and show cubic samples for materials
+
+				// Light System Variables
+				var ambientLight;   //scene ambient light object
+				var lights;
+				var numberOfLights = 3;
+
+				// lights for BRDF
+				var PointLightPosition1 = new THREE.Vector3(0,7,75);
+				var PointLightPosition2 = new THREE.Vector3(-19,0,-17);
+				var PointLightPosition3 = new THREE.Vector3(19,0,-17);
+
+				var LightParameters = {
+					red: 1.0,
+					green: 1.0,
+					blue: 1.0,
+					intensity: 0.85,};
+				
+				// Model Variables
+				var modelPath = "/models/finalModel3.glb";
+                var modelParts;     // contains all model's parts (meshes)
+                var numberOfParts = 5;
+                var modeLoaded = false;
+
+				var ParametriSelezioneModello = {	// values on code indicates starting properties of materials
+					parte1: {Material: "Gold", Color: 0x000000,},
+					parte2: {Material: "Opaque plastic", Color: 0x222222,},
+					parte3: {Material: "Gold", Color: 0xff0000,},
+					parte4: {Material: "Dark fabric", Color: 0x222222,},
+					parte5: {Material: "Gold", Color: 0xff0000,},
+				}
+
+				var ParametriSelezioneScena = {
+					Location : "House indoor",
+					Mostra_Manichino: true,	//not used
+				}
+				
+                // Shaders //
+                var basicVertex; var basicFragment;				// basic fragment shader
+				var glossyVertex; var glossyFragment;			// glossy reflection from cubemap shader
+				var vertexLambMicro; var fragmentLambMicro;		// lambertian + microfacet shader
+				var vertexLambGlossy; var fragmentLambGlossy;	// lambertian + glossy shader
+
+				var normalMaps = new Array(10);
+
+				// pre-defined Materials: 
+				var GoldMetal, AluminiumMetal, SilverMetal, HeadMaterial, TessutoScuro, TessutoChiaro, CopperMetal, PelleScura, PelleChiara;
+                
+                var Plastic_Cspec = {red: 0.04, green: 0.04, blue: 0.04};
+
+				//var Gold_Cspec = {red: 1.078, green: 0.782, blue: 0.344, roughness: 0.35}; for brdf
+				//var Aluminium_Cspec = {red: 0.913, green: 0.922, blue: 0.924, roughness: 0.475}; for brdf
+
+				
+				function Start() {
+                    // Starting configuration phase:
+                    // 1. Model meshes loading phase
+                    modelParts = new Array(numberOfParts);
+                    modelMaterials = new Array(numberOfParts);
+                    loadGLTFModel();
+                    loadShaders();
+					LoadNormalMap();
+					LoadCubeMaps();
+					generatePredefinedMaterials();
+
+                    // 2. Scene Initialization phase
+					setupScene();
+					setupRenderer();
+					setupCamera();
+					//setupStatsOSD();
+					setupLightSystem();
+					buildNewGUI();
+					updateSceneCubemap();
+					
+
+					/* ___________________________________________________________________________________________________________________________________________________________________________
+					>> Start code goes here:
+					*/
+
+		
+				}
+
+				function updateSceneCubemap(){
+					Location = ParametriSelezioneScena.Location;
+					if(Location == "Beach"){
+						scene.background = cubemaps[2];
+						updateMaterialsCubemap(2);
+					}else if(Location == "Mountain lake"){
+						scene.background = cubemaps[1];
+						updateMaterialsCubemap(1);
+					}else if(Location == "Shangai by night"){
+						scene.background = cubemaps[3];
+						updateMaterialsCubemap(3);
+					}else if(Location == "House indoor"){
+						scene.background = cubemaps[0];
+						updateMaterialsCubemap(0);
+					}else if(Location == "Night sky"){
+						scene.background = cubemaps[5];
+						updateMaterialsCubemap(5);
+					}else if(Location == "Venezia"){
+						scene.background = cubemaps[4];
+						updateMaterialsCubemap(4);
+					}else if(Location == "Forest"){
+						scene.background = cubemaps[6];
+						updateMaterialsCubemap(6);
+					}else if(Location == "Road overpass"){
+						scene.background = cubemaps[7];
+						updateMaterialsCubemap(7);
+					}else if(Location == "Rome garden"){
+						scene.background = cubemaps[8];
+						updateMaterialsCubemap(8);
+					}
+				}
+
+				function updateMaterialsCubemap(cubemapIndex){
+					if(modelParts[1]){
+					modelParts[1].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					}
+					if(modelParts[2]){
+					modelParts[2].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					}
+					if(modelParts[3]){
+					modelParts[3].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					}
+					if(modelParts[4]){
+					modelParts[4].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					}
+					if(modelParts[5]){
+					modelParts[5].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					}
+
+					AluminiumMetal.uniforms.envMap.value = cubemaps[cubemapIndex];
+					GoldMetal.uniforms.envMap.value = cubemaps[cubemapIndex];
+					SilverMetal.uniforms.envMap.value = cubemaps[cubemapIndex];
+					CopperMetal.uniforms.envMap.value = cubemaps[cubemapIndex];
+
+					if(sample[1]){
+					sample[8].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					sample[7].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					sample[6].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					sample[5].material.uniforms.envMap.value = cubemaps[cubemapIndex];
+					}
+	
+				}
+
+				function initializeModelMaterials(){
+					updateMaterialType(1);
+					updateMaterialType(2);
+					updateMaterialType(3);
+					updateMaterialType(4);
+					updateMaterialType(5);
+				}
+
+				function updateMaterialType(partnumber){
+
+				var part_to_update = modelParts[partnumber];
+				var Parametri = selectSelectionPaCopperters(partnumber);
+				new_color = new THREE.Color(Parametri.Color);
+
+					if(Parametri.Material == "Opaque plastic"){		
+						new_uniforms = generateGlossyLambertUniforms(Plastic_Cspec,normalMaps[0],cubemap,1,1,0.9,new THREE.Vector3(new_color.r,new_color.g,new_color.b));
+						new_material = createMaterial(new_uniforms,vertexLambGlossy,fragmentLambGlossy);
+						changePartMaterial(part_to_update,new_material);
+					}else if(Parametri.Material == "Lucid plastic"){
+						new_uniforms = generateGlossyLambertUniforms(Plastic_Cspec,normalMaps[5],cubemap,0.25,0.25,0.4,new THREE.Vector3(new_color.r,new_color.g,new_color.b));
+						new_material = createMaterial(new_uniforms,vertexLambGlossy,fragmentLambGlossy);
+						changePartMaterial(part_to_update,new_material);
+					}else if(Parametri.Material == "Gold"){
+						changePartMaterial(part_to_update,GoldMetal);
+					}else if(Parametri.Material == "Aluminium"){
+						changePartMaterial(part_to_update,AluminiumMetal);
+					}else if(Parametri.Material == "Silver"){
+						changePartMaterial(part_to_update,SilverMetal);
+					}else if(Parametri.Material == "Dark fabric"){
+						changePartMaterial(part_to_update,TessutoScuro);
+					}else if(Parametri.Material == "Light fabric"){
+						changePartMaterial(part_to_update,TessutoChiaro);
+					}else if(Parametri.Material == "Copper"){
+						changePartMaterial(part_to_update,CopperMetal);
+					}else if(Parametri.Material == "Dark leather"){
+						changePartMaterial(part_to_update,PelleScura);
+					}else if(Parametri.Material == "Light leather"){
+						changePartMaterial(part_to_update,PelleChiara);
+					}
+					
+				}
+
+				function selectSelectionPaCopperters(partnumber){
+					if(partnumber == 1){return ParametriSelezioneModello.parte1};
+					if(partnumber == 2){return ParametriSelezioneModello.parte2};
+					if(partnumber == 3){return ParametriSelezioneModello.parte3};
+					if(partnumber == 4){return ParametriSelezioneModello.parte4};
+					if(partnumber == 5){return ParametriSelezioneModello.parte5};
+				}
+
+				function generateLambertianUniforms(cspec,roughness,cdiff){
+					lambertianUniforms = {
+						cspec:{ type: "v3", value: new THREE.Vector3(cspec.x,cspec.y,cspec.z) },
+						cdiff:{ type: "v3", value: new THREE.Vector3(cdiff.x,cdiff.y,cdiff.z) },
+						roughness: {type: "f", value: roughness},
+						pointLightPosition1:{ type: "v3", value: PointLightPosition1 },
+						clight1:{ type: "v3", value: new THREE.Vector3(LightParameters.red * LightParameters.intensity,LightParameters.green * LightParameters.intensity,LightParameters.blue * LightParameters.intensity) },
+						pointLightPosition2:{ type: "v3", value: PointLightPosition2 },
+						clight2:{ type: "v3", value: new THREE.Vector3(LightParameters.red * LightParameters.intensity,LightParameters.green * LightParameters.intensity,LightParameters.blue * LightParameters.intensity) },
+						pointLightPosition3:{ type: "v3", value: PointLightPosition3 },
+						clight3:{ type: "v3", value: new THREE.Vector3(LightParameters.red * LightParameters.intensity,LightParameters.green * LightParameters.intensity,LightParameters.blue * LightParameters.intensity) },						
+					};
+                    return lambertianUniforms;
+				}
+
+				function generateGlossyUniforms(cspec,normalMap,envMap,XnormScale,YnormScale,roughness){
+					var glossyUniforms = {
+				    	cspec:	{ type: "v3", value: new THREE.Vector3(cspec.x,cspec.y,cspec.z) },
+				    	normalMap:	{ type: "t", value: normalMap},
+						normalScale: {type: "v2", value: new THREE.Vector2(XnormScale,YnormScale)},
+						envMap:	{ type: "t", value: envMap},
+						roughness: { type: "f", value: roughness},
+						};
+					return glossyUniforms;
+				}
+
+				function generateGlossyLambertUniforms(cspec,normalMap,envMap,XnormScale,YnormScale,roughness,cdiff){
+
+				glossyLambUniforms = {
+						cspec:{ type: "v3", value: new THREE.Vector3(cspec.x,cspec.y,cspec.z) },
+						cdiff:{ type: "v3", value: new THREE.Vector3(cdiff.x,cdiff.y,cdiff.z) },
+						roughness: {type: "f", value: roughness},
+						pointLightPosition1:{ type: "v3", value: PointLightPosition1 },
+						clight1:{ type: "v3", value: new THREE.Vector3(LightParameters.red * LightParameters.intensity,LightParameters.green * LightParameters.intensity,LightParameters.blue * LightParameters.intensity) },
+						pointLightPosition2:{ type: "v3", value: PointLightPosition2 },
+						clight2:{ type: "v3", value: new THREE.Vector3(LightParameters.red * LightParameters.intensity,LightParameters.green * LightParameters.intensity,LightParameters.blue * LightParameters.intensity) },
+						pointLightPosition3:{ type: "v3", value: PointLightPosition3 },
+						clight3:{ type: "v3", value: new THREE.Vector3(LightParameters.red * LightParameters.intensity,LightParameters.green * LightParameters.intensity,LightParameters.blue * LightParameters.intensity) },
+						normalMap:	{ type: "t", value: normalMap},
+						normalScale: {type: "v2", value: new THREE.Vector2(XnormScale,YnormScale)},
+						envMap:	{ type: "t", value: envMap},
+					};
+					return glossyLambUniforms;
+				}
+
+
+				
+				function generatePredefinedMaterials(){
+
+					GoldUniforms = generateGlossyLambertUniforms(new THREE.Vector3(1.078,0.782,0.344),normalMaps[0],cubemap,0.085,0.085,0.18, new THREE.Vector3(0.0,0.0,0.0));
+					GoldMetal = createMaterial(GoldUniforms,vertexLambGlossy,fragmentLambGlossy);
+					
+					SilverUniforms = generateGlossyLambertUniforms(new THREE.Vector3(0.992,0.980,0.935),normalMaps[3],cubemap,0.055,0.055,0.18, new THREE.Vector3(0.0,0.0,0.0));
+					SilverMetal = createMaterial(SilverUniforms,vertexLambGlossy,fragmentLambGlossy);
+
+					AluminiumUniforms = generateGlossyLambertUniforms(new THREE.Vector3(0.913,0.922,0.924),normalMaps[2],cubemap,0.2,0.2,0.5, new THREE.Vector3(0.0,0.0,0.0));
+					AluminiumMetal = createMaterial(AluminiumUniforms,vertexLambGlossy,fragmentLambGlossy);
+					
+					CopperUniforms = generateGlossyLambertUniforms(new THREE.Vector3(0.955,0.638,0.538),normalMaps[3],cubemap,0.065,0.065,0.18, new THREE.Vector3(0.0,0.0,0.0));
+					CopperMetal = createMaterial(CopperUniforms,vertexLambGlossy,fragmentLambGlossy);
+
+					HeadUniforms = generateGlossyLambertUniforms(new THREE.Vector3(0.1,0.1,0.1),normalMaps[3],cubemap,0.5,0.5,1, new THREE.Vector3(0.93,0.93,0.93));
+					HeadMaterial = createMaterial(HeadUniforms,vertexLambGlossy,fragmentLambGlossy);
+
+					TessutoScuroUniforms = generateGlossyLambertUniforms(new THREE.Vector3(0.09,0.09,0.09),normalMaps[1],cubemap,8,8,0.8, new THREE.Vector3(0.085,0.085,0.085));
+					TessutoScuro = createMaterial(TessutoScuroUniforms,vertexLambGlossy,fragmentLambGlossy);
+
+					TessutoChiaroUniforms = generateGlossyLambertUniforms(new THREE.Vector3(0.09,0.09,0.09),normalMaps[1],cubemap,8,8,0.8, new THREE.Vector3(0.585,0.585,0.585));
+					TessutoChiaro = createMaterial(TessutoChiaroUniforms,vertexLambGlossy,fragmentLambGlossy);
+
+					PelleScuraUniforms = generateGlossyLambertUniforms(new THREE.Vector3(0.04,0.04,0.04),normalMaps[5],cubemap,10,10,0.6, new THREE.Vector3(0.085,0.085,0.085));
+					PelleScura = createMaterial(PelleScuraUniforms,vertexLambGlossy,fragmentLambGlossy);
+
+					PelleChiaraUniforms = generateGlossyLambertUniforms(new THREE.Vector3(0.075,0.075,0.075),normalMaps[5],cubemap,10,10,0.6, new THREE.Vector3(0.485,0.485,0.485));
+					PelleChiara = createMaterial(PelleChiaraUniforms,vertexLambGlossy,fragmentLambGlossy);
+
+				console.log("predefined materials generated!");
+				}
+				
+                function createMaterial(uniforms,vertexShader,fragmentShader){
+					Materialxtensions = {
+						shaderTextureLOD: true // set to use shader texture LOD
+					};
+                    newMaterial = new THREE.ShaderMaterial({
+                        uniforms: uniforms,
+                        vertexShader: vertexShader,
+                        fragmentShader: fragmentShader,
+						extensions: Materialxtensions });
+                    return newMaterial;
+                }
+
+                function changePartMaterial(part,material){
+                    part.material = material;
+                }
+
+                function loadGLTFModel(){
+                    var loader = new THREE.GLTFLoader();
+                    loader.load(modelPath,
+                    	function ( gltf ) {	
+
+						// saving model's part
+						modelParts[1] = gltf.scene.children[1];
+						modelParts[2] = gltf.scene.children[2];
+						modelParts[3] = gltf.scene.children[3];
+						modelParts[4] = gltf.scene.children[4];
+                    	modelParts[5] = gltf.scene.children[5];
+
+						head = gltf.scene.children[6];
+						
+						if(!test){
+						// adding parts
+						scene.add(modelParts[1]);
+						scene.add(modelParts[2]);
+						scene.add(modelParts[3]);
+						scene.add(modelParts[4]);
+						scene.add(modelParts[5]);
+
+
+						scene.add(head);
+						head.material = HeadMaterial;
+						}
+
+						
+
+						// computing tangents for every single part
+						THREE.BufferGeometryUtils.computeTangents(modelParts[1].geometry);
+						THREE.BufferGeometryUtils.computeTangents(modelParts[2].geometry);	
+						THREE.BufferGeometryUtils.computeTangents(modelParts[3].geometry);	
+						THREE.BufferGeometryUtils.computeTangents(modelParts[4].geometry);
+						THREE.BufferGeometryUtils.computeTangents(modelParts[5].geometry);
+						THREE.BufferGeometryUtils.computeTangents(head.geometry);
+						initializeModelMaterials();
+						updateSceneCubemap();	
+
+					    modeLoaded = true;
+
+						if(test){
+
+						//TEST MATERIALS SAMPLES
+						var cube = new THREE.BoxBufferGeometry(4,4,4,1,1,1);
+						THREE.BufferGeometryUtils.computeTangents(cube);
+
+						new_uniforms1A = generateGlossyLambertUniforms(Plastic_Cspec,normalMaps[0],cubemap,1,1,0.9,new THREE.Vector3(0.9,0.2,0.2));
+						new_uniforms1B = generateGlossyLambertUniforms(Plastic_Cspec,normalMaps[0],cubemap,1,1,0.9,new THREE.Vector3(0.6,0.6,0.2));
+						new_material1A = createMaterial(new_uniforms1A,vertexLambGlossy,fragmentLambGlossy);
+						new_material1B = createMaterial(new_uniforms1B,vertexLambGlossy,fragmentLambGlossy);
+
+						new_uniforms2A = generateGlossyLambertUniforms(Plastic_Cspec,normalMaps[5],cubemap,0.25,0.25,0.4,new THREE.Vector3(0.2,0.8,0.2));
+						new_uniforms2B = generateGlossyLambertUniforms(Plastic_Cspec,normalMaps[5],cubemap,0.25,0.25,0.4,new THREE.Vector3(0.2,0.2,0.8));
+						new_material2A = createMaterial(new_uniforms2A,vertexLambGlossy,fragmentLambGlossy);
+						new_material2B = createMaterial(new_uniforms2B,vertexLambGlossy,fragmentLambGlossy);
+	
+						sample[1] = new THREE.Mesh(cube,GoldMetal);
+						sample[2] = new THREE.Mesh(cube,SilverMetal);
+						sample[3] = new THREE.Mesh(cube,AluminiumMetal);
+						sample[4] = new THREE.Mesh(cube,CopperMetal);
+						sample[5] = new THREE.Mesh(cube,new_material1A);
+						sample[6] = new THREE.Mesh(cube,new_material1B);
+						sample[7] = new THREE.Mesh(cube,new_material2A);
+						sample[8] = new THREE.Mesh(cube,new_material2B);
+		
+						scene.add(sample[1]);
+						scene.add(sample[2]);
+						scene.add(sample[3]);
+						scene.add(sample[4]);
+
+						scene.add(sample[5]);
+						scene.add(sample[6]);
+						scene.add(sample[7]);
+						scene.add(sample[8]);
+		
+						sample[1].position.x = 0;
+						sample[2].position.x = 6;
+						sample[3].position.x = -6;
+						sample[4].position.x = -12;
+
+						sample[5].position.x = 0;
+						sample[6].position.x = 6;
+						sample[7].position.x = -6;
+						sample[8].position.x = -12;
+
+						sample[5].position.y = 6;
+						sample[6].position.y = 6;
+						sample[7].position.y = 6;
+						sample[8].position.y = 6;
+						}
+
+                       },)
+                       ;
+
+                }
+
+				
+				// search in html and save shaders textContents
+                function loadShaders(){
+                    basicVertex = document.getElementById("BasicVertexShader").textContent;
+                    basicFragment = document.getElementById("BasicColorFragmentShader").textContent;
+					vertexLambMicro = document.getElementById("vertexBRDF_Lambertian_Microfacet").textContent;
+					fragmentLambMicro = document.getElementById("fragmentBRDF_Lambertian_Microfacet").textContent;
+					glossyVertex = document.getElementById("GlossyVertex").textContent;
+					glossyFragment = document.getElementById("GlossyFragment").textContent;
+					vertexLambGlossy = document.getElementById("GlossyVertex").textContent;
+					fragmentLambGlossy = document.getElementById("LamebrtianGlossyFragment").textContent;
+				}
+				
+				// load and save cubemap texture
+				function LoadCubeMap(path){
+					var loader = new THREE.CubeTextureLoader();
+					loader.setPath(path);
+					cubemap = loader.load( [
+					'px.jpg', 'nx.jpg',
+					'py.jpg', 'ny.jpg',
+					'pz.jpg', 'nz.jpg'
+				] );		
+				cubemap.minFilter = THREE.LinearMipMapLinearFilter;
+				return cubemap;
+				}
+
+				function LoadCubeMaps(){
+					cubemaps[0] = LoadCubeMap( 'textures/cubemap_1/');
+					cubemaps[1] = LoadCubeMap( 'textures/cubemap_2/');
+					cubemaps[2] = LoadCubeMap( 'textures/cubemap_3/');
+					cubemaps[3] = LoadCubeMap( 'textures/cubemap_4/');
+					cubemaps[4] = LoadCubeMap( 'textures/cubemap_5/');
+					cubemaps[5] = LoadCubeMap( 'textures/cubemap_6/');
+					cubemaps[6] = LoadCubeMap( 'textures/cubemap_7/');
+					cubemaps[7] = LoadCubeMap( 'textures/cubemap_8/');
+					cubemaps[8] = LoadCubeMap( 'textures/cubemap_9/');
+					console.log("cubemaps loaded succesfully!")
+				}
+
+				// load normalMaps
+				function LoadNormalMap(){
+					normalMaps[0] = loadTexture('textures/normalmap_1.jpg');
+					normalMaps[1] = loadTexture('textures/normalmap_2.jpg');
+					normalMaps[2] = loadTexture('textures/normalmap_3.jpg');
+					normalMaps[3] = loadTexture('textures/normalmap_4.jpg');
+					normalMaps[4] = loadTexture('textures/normalmap_5.jpg');
+					normalMaps[5] = loadTexture('textures/normalmap_6.jpg');
+					normalMaps[6] = loadTexture('textures/normalmap_7.jpg');
+					console.log("normalmaps loaded succesfully!")
+				}
+
+				// load a texture froma given file path
+				function loadTexture(file) {
+					var texture = new THREE.TextureLoader().load( file , function ( texture ) {
+					texture.minFilter = THREE.LinearMipMapLinearFilter;
+					texture.anisotropy = renderer.getMaxAnisotropy();
+					texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    			    texture.offset.set( 0, 0 );
+					texture.needsUpdate = true;
+					})
+					return texture;
+				}
+				
+				// called once per frame
+				function Update() {	
+					requestAnimationFrame(Update);
+					//stats.update();
+					if(controlsActivated){controls.update();}
+					renderer.render(scene, camera);	
+				}
+	
+				// basic scene setup
+				function setupScene(){
+					scene = new THREE.Scene();
+					//Coordinates.drawAllAxes();
+				}
+
+				// basic camera setup
+				function setupCamera(){
+					camera = new THREE.PerspectiveCamera( 75, window.innerWidth*0.75 / window.innerHeight, 0.1, 1000 );
+					camera.position.set(6.1,4.5,-9);
+					camera.lookAt( new THREE.Vector3(0,0,0));
+					if(controlsActivated){
+						controls = new THREE.OrbitControls(camera, renderer.domElement);
+						controls.minDistance = 1;
+						controls.maxDistance = 100;
+						controls.enablePan = true;
+					}
+				}
+	
+				// renderer initialization
+				function setupRenderer(){
+					renderer = new THREE.WebGLRenderer({antialias:true});
+					renderer.setSize( window.innerWidth*0.75, window.innerHeight*1 );
+					renderer.setClearColor(0xf0f0f0);
+					renderer.shadowMap.Type = THREE.PCFShadowMap;
+					document.body.appendChild( renderer.domElement);
+					renderer.shadowMap.enabled = true;
+					renderer.shadowMap.type = THREE.BasicShadowMap;
+					renderer.setPixelRatio( window.devicePixelRatio );
+				}
+
+				// setup performance OSD
+				function setupStatsOSD(){
+					stats = new Stats();
+					stats.domElement.style.position = 'absolute';
+					stats.domElement.style.top = '0px';
+					document.body.appendChild( stats.domElement );
+				}
+	
+				// seutp the scene light system
+				function setupLightSystem(){
+					// basic ambient light
+					ambientLight = new THREE.AmbientLight(0xffffff,0.8); 
+					scene.add(ambientLight);
+
+					lights = new Array(numberOfLights); // not used yet
+				}
+
+				// GUI for models modification user interaction. It allows the user to change materials for every model's part
+				function buildNewGUI() {
+					clearGUI();
+					
+					selezioneParte1 = gui.addFolder('External part');
+					selezioneParte2 = gui.addFolder('Buttons');
+					selezioneParte3 = gui.addFolder('Top part');
+					selezioneParte5 = gui.addFolder('Internal part');
+					selezioneParte4 = gui.addFolder('Ergonomic elements');
+					
+
+					selezioneScena = gui.addFolder('Environment');
+
+					selezioneScena.add(ParametriSelezioneScena, 'Location',["Mountain lake","Beach","Shangai by night","House indoor","Venezia","Night sky", "Forest", "Rome garden", "Road overpass"]).onChange(
+					function(value){
+						console.log("Hei! Cubemap needs to be updated!!");
+						updateSceneCubemap();
+					}
+					
+					);
+
+					selezioneParte1.add(ParametriSelezioneModello.parte1,'Material',["Lucid plastic","Opaque plastic","Gold","Silver","Aluminium","Copper"]).onChange(
+					function( value ) {
+						console.log("Hey!, changed material on Part1");
+						updateMaterialType(1);
+						updateSceneCubemap();
+						if(ParametriSelezioneModello.parte1.Material == "Gold" || ParametriSelezioneModello.parte1.Material =="Aluminium" || ParametriSelezioneModello.parte1.Material =="Silver" || ParametriSelezioneModello.parte1.Material =="Copper"){
+							colorPicker1.domElement.hidden = true;		
+						}else{
+							colorPicker1.domElement.hidden = false;
+						}
+					});
+			
+					colorPicker1 = selezioneParte1.addColor(ParametriSelezioneModello.parte1,'Color').onChange(
+						function(value){
+						console.log("Hey! color changed on Part1");
+						updateMaterialType(1);	
+						updateSceneCubemap();
+					});
+
+					selezioneParte2.add(ParametriSelezioneModello.parte2,'Material',["Lucid plastic","Opaque plastic","Gold","Silver","Aluminium","Copper"]).onChange(
+					function( value ) {
+						console.log("Hey!, changed material  on Part2");
+						updateMaterialType(2);
+						updateSceneCubemap();
+						if(ParametriSelezioneModello.parte2.Material == "Gold" || ParametriSelezioneModello.parte2.Material =="Aluminium" || ParametriSelezioneModello.parte2.Material =="Silver"  || ParametriSelezioneModello.parte2.Material =="Copper"){
+							colorPicker2.domElement.hidden = true;		
+						}else{
+							colorPicker2.domElement.hidden = false;
+						}
+					});
+			
+					colorPicker2 = selezioneParte2.addColor(ParametriSelezioneModello.parte2,'Color').onChange(
+						function(value){
+						console.log("Hey! color changed on Part2");
+						updateMaterialType(2);	
+						updateSceneCubemap();
+					});
+
+					selezioneParte3.add(ParametriSelezioneModello.parte3,'Material',["Lucid plastic","Opaque plastic","Gold","Silver","Aluminium","Copper"]).onChange(
+					function( value ) {
+						console.log("Hey!, changed material on Part3");
+						updateMaterialType(3);
+						updateSceneCubemap();
+						if(ParametriSelezioneModello.parte3.Material == "Gold" || ParametriSelezioneModello.parte3.Material =="Aluminium" || ParametriSelezioneModello.parte3.Material =="Silver"  || ParametriSelezioneModello.parte3.Material =="Copper"){
+							colorPicker3.domElement.hidden = true;		
+						}else{
+							colorPicker3.domElement.hidden = false;
+						}
+					});
+			
+					colorPicker3 = selezioneParte3.addColor(ParametriSelezioneModello.parte3,'Color').onChange(
+						function(value){
+						console.log("Hey! color changed on Part3");
+						updateMaterialType(3);	
+						updateSceneCubemap();
+					});
+
+					selezioneParte4.add(ParametriSelezioneModello.parte4,'Material',[ "Dark fabric", "Light fabric", "Dark leather","Light leather"]).onChange(
+					function( value ) {
+						console.log("Hey!, changed material on Part4");
+						updateMaterialType(4);
+						updateSceneCubemap();
+					});
+
+					selezioneParte5.add(ParametriSelezioneModello.parte5,'Material',["Lucid plastic","Opaque plastic","Gold","Silver","Aluminium","Copper"]).onChange(
+					function( value ) {
+						console.log("Hey!, changed material on Part5");
+						updateMaterialType(5);
+						updateSceneCubemap();
+						if(ParametriSelezioneModello.parte5.Material == "Gold" || ParametriSelezioneModello.parte5.Material =="Aluminium" || ParametriSelezioneModello.parte5.Material =="Silver" || ParametriSelezioneModello.parte5.Material =="Copper"){
+							colorPicker5.domElement.hidden = true;		
+						}else{
+							colorPicker5.domElement.hidden = false;
+						}
+					});
+			
+					colorPicker5 = selezioneParte5.addColor(ParametriSelezioneModello.parte5,'Color').onChange(
+						function(value){
+						console.log("Hey! color changed on Part5");
+						updateMaterialType(5);	
+						updateSceneCubemap();
+					});
+
+
+					// HIDE COLOR SELECTORS IF STARTING MATERIAL CAN'T CHANGE COLOR
+					if(ParametriSelezioneModello.parte1.Material == "Gold" || ParametriSelezioneModello.parte1.Material =="Aluminium" || ParametriSelezioneModello.parte1.Material =="Silver" || ParametriSelezioneModello.parte1.Material =="Copper"){
+							colorPicker1.domElement.hidden = true;		
+						}else{
+							colorPicker1.domElement.hidden = false;
+					}
+	
+					if(ParametriSelezioneModello.parte2.Material == "Gold" || ParametriSelezioneModello.parte2.Material =="Aluminium" || ParametriSelezioneModello.parte2.Material =="Silver" || ParametriSelezioneModello.parte2.Material =="Copper"){
+							colorPicker2.domElement.hidden = true;		
+						}else{
+							colorPicker2.domElement.hidden = false;
+					}
+		
+					if(ParametriSelezioneModello.parte3.Material == "Gold" || ParametriSelezioneModello.parte3.Material =="Aluminium" || ParametriSelezioneModello.parte3.Material =="Silver" || ParametriSelezioneModello.parte3.Material =="Copper"){
+							colorPicker3.domElement.hidden = true;		
+						}else{
+							colorPicker3.domElement.hidden = false;
+					}
+
+					if(ParametriSelezioneModello.parte5.Material == "Gold" || ParametriSelezioneModello.parte5.Material =="Aluminium" || ParametriSelezioneModello.parte5.Material =="Silver" || ParametriSelezioneModello.parte5.Material =="Copper"){
+							colorPicker5.domElement.hidden = true;		
+						}else{
+							colorPicker5.domElement.hidden = false;
+					}
+
+					// start gui as open
+					selezioneParte1.closed = false;
+					selezioneParte2.closed = false;
+					selezioneParte3.closed = false;
+					selezioneParte4.closed = false;
+					selezioneParte5.closed = false;
+					selezioneScena.closed = false;
+				
+				}
+
+				function clearGUI() {
+					if ( gui ) gui.destroy();
+					gui = new dat.GUI();
+					gui.open();
+				}
+				
+				// Main code goes here:
+	
+				Start();
+				Update();
+				
+				
+			</script>
+		</body>
+	</html>
