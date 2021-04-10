@@ -1,4 +1,4 @@
-### Questa repo è un backup del secondo progetto per il corso di INTERACTIVE 3D GRAPHICS (università degli scorsi di Udine)
+### Questa repo è un backup del secondo progetto per il corso di INTERACTIVE 3D GRAPHICS (università degli studi di Udine)
 ---
 # Product configurator - Andrea Mansi - 137857 - UNIUD
 ### 2° progetto Interactive 3D Graphics 2019-2020
