@@ -1,6 +1,11 @@
-### Questa repo è un backup del secondo progetto per il corso di INTERACTIVE 3D GRAPHICS (università degli studi di Udine)
+### About (ENG)
+In this repo you can find a real-time web project developed via the Three.js library. This project has been developed for the university "Interactive 3D graphics" course. The course is about basic principles of real-time-rendering.
+
+The assignement asked to develop an HTML online website with a 3D real-time configurator environrment.
+
+The README is in italian language, as required by the course assignement, sorry for that.
 ---
-# Product configurator - Andrea Mansi - 137857 - UNIUD
+# Product configurator - Andrea Mansi - 137857 - Università degli Studi di Udine - Italy
 ### 2° progetto Interactive 3D Graphics 2019-2020
 
 ---
